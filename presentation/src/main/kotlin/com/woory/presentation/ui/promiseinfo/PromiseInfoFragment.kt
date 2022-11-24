@@ -36,7 +36,6 @@ class PromiseInfoFragment :
 
         viewModel.fetchPromiseDate()
         binding.apply {
-            lifecycleOwner = viewLifecycleOwner
             vm = viewModel
             defaultString = ""
         }
