@@ -47,11 +47,7 @@ class PromiseInfoFragment :
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.errorState.collect {
                 if (it) {
-                    Snackbar.make(
-                        binding.root,
-                        getString(R.string.promise_fetch_fail),
-                        Snackbar.LENGTH_SHORT
-                    ).show()
+                    makeSnackBar(getString(R.string.promise_fetch_fail))
                     viewModel.setUiState(PromiseUiState.Loading)
                     viewModel.setErrorState(false)
                 }
