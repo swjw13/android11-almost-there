@@ -75,7 +75,6 @@ class GamingFragment : BaseFragment<FragmentGamingBinding>(R.layout.fragment_gam
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-//        viewModel.fetchPromiseData()
         viewModel.fetchPromise()
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -121,7 +120,6 @@ class GamingFragment : BaseFragment<FragmentGamingBinding>(R.layout.fragment_gam
                             viewModel.promiseModel.collectLatest {
                                 if (it != null) {
                                     viewModel.fetchMagneticField(it)
-//                                    viewModel.fetchRealtimeRanking()
                                     viewModel.fetchUserArrival()
                                     viewModel.fetchPromiseEnding()
                                 }

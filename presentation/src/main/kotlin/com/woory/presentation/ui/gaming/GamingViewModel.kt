@@ -137,36 +137,6 @@ class GamingViewModel @Inject constructor(
                     val uiLocationModel = userLocationModel.asUiModel()
 
                     requireNotNull(userLocationMap[user.userId]).emit(uiLocationModel)
-                }.onFailure {
-                    Timber.tag("123123").d(it)
-                }
-            }
-        }
-    }
-
-    // TODO : 실시간 순위 받아오기
-    fun fetchRealtimeRanking() {
-        viewModelScope.launch {
-            val code = gameCode.value
-            launch {
-                promiseRepository.getGameRealtimeRanking(code).collectLatest { result ->
-                    result.onSuccess { list ->
-//                        _ranking.emit(list.filter {
-//                            !it.lost && !it.arrived
-//                        }
-//                            .map { addedUserHpModel ->
-//                                val id = addedUserHpModel.userId
-//                                UserRanking(
-//                                    userId = id,
-//                                    rank = list.indexOf(addedUserHpModel) + 1,
-//                                    profileImage = getUserImage(id) ?: requireNotNull(
-//                                        userDefaultImage.value
-//                                    ),
-//                                    userName = userNameMap[id]?.value ?: "",
-//                                    hp = addedUserHpModel.hp
-//                                )
-//                            })
-                    }
                 }
             }
         }
@@ -229,10 +199,6 @@ class GamingViewModel @Inject constructor(
         return ranking.value.find {
             it.userId == id
         }?.rankingNumber
-
-//        return userHpMap[id]?.value?.let {
-//            userHpMap.values.map { it.value }.indexOf(it) + 1
-//        }
     }
 
     suspend fun getAddress(id: String): String? =
